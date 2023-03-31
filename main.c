@@ -19,19 +19,21 @@ int main() {
     humen start_list[4];
     humen end_list[4];
 
-    short n = 0;
-    while (!feof(f)) {
-        fscanf(f, "%s%s%hd", start_list[n].surname, start_list[n].name, &start_list[n].day_birth);
-        printf("%s %s %hd\n", start_list[n].surname, start_list[n].name, start_list[n].day_birth);
-        n++;
-    }
+    for (short i = 0; i < 4; i++) fscanf(f, "%s%s%hd", start_list[i].surname, start_list[i].name, &start_list[i].day_birth);
+
+    printf("= = = = = = = = = = = = = = = =\n");
     for (short i = 0; i < 4; i++) {
         end_list[i] = start_list[i];
-        for (short j = 0; j < 4; j++) {
-            if (end_list[i].day_birth > start_list[j].day_birth) end_list[i] = start_list[j];
+        for (short j = 0; j < i; j++) {
+            if (end_list[j].day_birth < end_list[j+1].day_birth) {
+                humen temp = end_list[j];
+                end_list[j] = end_list[j+1];
+                end_list[j+1] = temp;
+            };
         }
-        printf("%s\n", end_list[i].surname);
     }
+
+    for (short i = 3; i >= 0; i--) printf("%s %s %hd\n", end_list[i].surname, end_list[i].name, end_list[i].day_birth);
 
     return 0;
 }
