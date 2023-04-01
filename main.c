@@ -22,7 +22,6 @@ int main() {
     for (short i = 0; i < 4; i++) fscanf(f, "%s%s%hd", start_list[i].surname, start_list[i].name, &start_list[i].day_birth);
     fclose(f);
 
-    printf("= = = = = = = = = = = = = = = =\n");
     for (short i = 0; i < 4; i++) {
         end_list[i] = start_list[i];
         for (short j = 0; j < i; j++) {
@@ -37,6 +36,7 @@ int main() {
     FILE *fw;
     fw = fopen("people_sorted.txt", "w");
     for (short i = 3; i >= 0; i--) fprintf(fw, "%s %s %hd\n", end_list[i].surname, end_list[i].name, end_list[i].day_birth);
+    fclose(fw);
 
     return 0;
 }
