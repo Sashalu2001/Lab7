@@ -34,7 +34,9 @@ int main() {
         }
     }
 
-    for (short i = 3; i >= 0; i--) printf("%s %s %hd\n", end_list[i].surname, end_list[i].name, end_list[i].day_birth);
+    FILE *fw;
+    fw = fopen("people_sorted.txt", "w");
+    for (short i = 3; i >= 0; i--) fprintf(fw, "%s %s %hd\n", end_list[i].surname, end_list[i].name, end_list[i].day_birth);
 
     return 0;
 }
